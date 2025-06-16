@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
+import Logo from './assets/images/advogai-logo.png'
+import Logo2 from './assets/images/contabilizai-logo.png'
+import Logo3 from './assets/images/certificai-logo.png'
+
 // As imagens agora serão carregadas diretamente da pasta 'public'
 // Não precisamos mais das linhas de 'import' para os logos.
 
@@ -156,7 +160,7 @@ export default function App() {
                                 <div style={styles.iconContainer}>
                                     <img src="data:image/svg+xml,%3csvg stroke-width='1.5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cdefs%3e%3cstyle%3e.cls-mhzwvkh1zvwmgskp5qkc-1%7bfill:none%3bstroke:%23FDCDD2%3bstroke-linecap:square%3bstroke-miterlimit:10%3b%7d%3c/style%3e%3c/defs%3e%3cg id='suitcase'%3e%3crect class='cls-mhzwvkh1zvwmgskp5qkc-1' x='1.5' y='6.27' width='21' height='15.27' rx='2'/%3e%3cpolygon class='cls-mhzwvkh1zvwmgskp5qkc-1' points='15.82 6.27 8.18 6.27 9.14 2.46 14.86 2.46 15.82 6.27'/%3e%3cline class='cls-mhzwvkh1zvwmgskp5qkc-1' x1='6.27' y1='6.27' x2='6.27' y2='21.55'/%3e%3cline class='cls-mhzwvkh1zvwmgskp5qkc-1' x1='17.73' y1='6.27' x2='17.73' y2='21.55'/%3e%3c/g%3e%3c/svg%3e" alt="Icone AdvogAl" style={{width: '48px', height: '48px'}}/>
                                 </div>
-                                <img src="/images/advogai-logo.png" alt="Logo AdvogAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
+                                <img src={Logo} alt="Logo AdvogAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
                                 <p style={styles.productSlogan}>Mais Tempo para a Estratégia Jurídica.</p>
                                 <p style={{...styles.productDescription, ...styles.highlightRed}}>O AdvogAl é seu assistente jurídico dedicado. Ele organiza processos, monitora prazos e automatiza a elaboração de documentos básicos, para você argumentar, negociar e vencer casos.</p>
                                 <ul style={styles.benefitsList}>
@@ -171,7 +175,7 @@ export default function App() {
                                 <div style={styles.iconContainer}>
                                     <img src="data:image/svg+xml,%3csvg stroke-width='1.5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cdefs%3e%3cstyle%3e.cls-apfbg9ian0vfhdnoxtwp9p-1%2c.cls-apfbg9ian0vfhdnoxtwp9p-2%7bfill:none%3bstroke:%23AEC6CF%3bstroke-miterlimit:10%3b%7d.cls-apfbg9ian0vfhdnoxtwp9p-1%7bstroke-linecap:square%7d%3c/style%3e%3c/defs%3e%3cg id='calculator'%3e%3crect class='cls-apfbg9ian0vfhdnoxtwp9p-1' x='4.36' y='1.5' width='15.27' height='21'/%3e%3cpath class='cls-apfbg9ian0vfhdnoxtwp9p-1' d='M15.82 16.77v0Z'/%3e%3crect class='cls-apfbg9ian0vfhdnoxtwp9p-1' x='8.18' y='5.32' width='7.64' height='3.82'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='12' y1='12' x2='12' y2='13.91'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='8.18' y1='12' x2='8.18' y2='13.91'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='12' y1='14.86' x2='12' y2='16.77'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='8.18' y1='14.86' x2='8.18' y2='16.77'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='12' y1='17.73' x2='12' y2='19.64'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='8.18' y1='17.73' x2='8.18' y2='19.64'/%3e%3cline class='cls-apfbg9ian0vfhdnoxtwp9p-2' x1='15.82' y1='12' x2='15.82' y2='13.91'/%3e%3c/g%3e%3c/svg%3e" alt="icone ContabilizAl" style={{width: '48px', height: '48px'}}/>
                                 </div>
-                                <img src="/images/contabilizai-logo.png" alt="Logo ContabilizAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
+                                <img src={Logo2} alt="Logo ContabilizAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
                                 <p style={styles.productSlogan}>A Inteligência Artificial para seu Escritório Contábil.</p>
                                 <p style={{...styles.productDescription, ...styles.highlightBlue}}>Deixe a rotina de conciliação fiscal e lançamentos manuais no passado. O ContabilizAl integra-se aos seus sistemas para automatizar tarefas repetitivas e gerar insights tributários, transformando seu escritório em um centro de estratégia.</p>
                                 <ul style={styles.benefitsList}>
@@ -186,7 +190,7 @@ export default function App() {
                                 <div style={styles.iconContainer}>
                                     <img src="data:image/svg+xml,%3csvg stroke-width='1.5' id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cdefs%3e%3cstyle%3e.cls-z9usf70wlqotyeifmdts6-1%7bfill:none%3bstroke:%23D1D5DB%3bstroke-miterlimit:10%3b%7d%3c/style%3e%3c/defs%3e%3cpath class='cls-z9usf70wlqotyeifmdts6-1' d='M12 22.5a11.87 11.87 0 0 1-9.55-11.64V3.41L12 1.5l9.55 1.91v7.45A11.87 11.87 0 0 1 12 22.5Z'/%3e%3cpolyline class='cls-z9usf70wlqotyeifmdts6-1' points='7.23 10.93 10.81 14.51 16.77 8.54'/%3e%3c/svg%3e" alt="Ícone CertificAl" style={{width: '48px', height: '48px'}}/>
                                 </div>
-                                <img src="/images/certificai-logo.png" alt="Logo CertificAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
+                                <img src={Logo3} alt="Logo CertificAI" style={{width: '180px', height: 'auto', marginBottom: '20px'}} />
                                 <p style={styles.productSlogan}>Precisão e Agilidade para Certificadoras Digitais.</p>
                                 <p style={{...styles.productDescription, ...styles.highlightGray}}>A rotina de um Agente de Registro é marcada por uma responsabilidade imensa. O CertificAl elimina gargalos e reduz o risco de erros humanos, permitindo que sua equipe valide documentos, automatize a comunicação e garanta conformidade total.</p>
                                 <ul style={styles.benefitsList}>
