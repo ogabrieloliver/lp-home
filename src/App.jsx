@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { PopupButton } from '@typeform/embed-react'; // <-- 1. Importação correta
 import ReactPlayer from 'react-player';
 
-import Logo from './assets/images/advogai-logo.png'
-import Logo2 from './assets/images/contabilizai-logo.png'
-import Logo3 from './assets/images/certificai-logo.png'
-
-// As imagens agora serão carregadas diretamente da pasta 'public'
-// Não precisamos mais das linhas de 'import' para os logos.
+import Logo from './assets/images/advogai-logo.png';
+import Logo2 from './assets/images/contabilizai-logo.png';
+import Logo3 from './assets/images/certificai-logo.png';
 
 // --- Ícones em SVG ---
 const LockIcon = () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>);
@@ -59,6 +57,13 @@ export default function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    // --- 2. Configuração correta do Typeform ---
+    const typeformRef = useRef(null);
+    const openTypeform = () => {
+        typeformRef.current?.open();
+    };
+    // ------------------------------------------
+
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         handleResize();
@@ -96,7 +101,7 @@ export default function App() {
                         <button onClick={() => setIsMenuOpen(false)} style={styles.closeButton}><XIcon /></button>
                         <nav style={styles.sideNav}>
                             {menuLinks.map(link => (<button key={link.name} style={styles.sideNavLink} onClick={() => scrollTo(link.ref)}>{link.name}</button>))}
-                            <button style={styles.sideNavButton} onClick={() => scrollTo(refs.offer)}>Teste Grátis</button>
+                            <button style={styles.sideNavButton} onClick={() => { openTypeform(); setIsMenuOpen(false); }}>Teste Grátis</button>
                         </nav>
                     </div>
                     <div style={styles.overlay} onClick={() => setIsMenuOpen(false)}></div>
@@ -109,7 +114,7 @@ export default function App() {
                     {isMobile ? (<button onClick={() => setIsMenuOpen(true)} style={styles.menuIcon}><MenuIcon /></button>) : (
                         <nav style={styles.nav}>
                             {menuLinks.map(link => (<button key={link.name} style={styles.navLink} onClick={() => scrollTo(link.ref)}>{link.name}</button>))}
-                            <a href="#offer" style={{ ...styles.navButton, ...styles.navButtonPastel }} onClick={(e) => { e.preventDefault(); scrollTo(refs.offer); }}>Teste Grátis</a>
+                            <button style={{ ...styles.navButton, ...styles.navButtonPastel }} onClick={openTypeform}>Teste Grátis</button>
                         </nav>
                     )}
                 </div>
@@ -134,7 +139,7 @@ export default function App() {
                         <div ref={refs.video} >
                             <YouTubeEmbed videoId="Qdewnn-VYVE" />
                         </div>
-                        <a href="#offer" style={{ ...styles.ctaButton, ...styles.heroCtaButton }} onClick={(e) => { e.preventDefault(); scrollTo(refs.offer); }}>Comece seu Teste Grátis</a>
+                        <button style={{ ...styles.ctaButton, ...styles.heroCtaButton }} onClick={openTypeform}>Comece seu Teste Grátis</button>
                     </div>
                 </section>
 
@@ -219,7 +224,7 @@ export default function App() {
                     <div style={styles.container}>
                         <h2 style={styles.offerTitle}>Tenha IA no seu WhatsApp.<br />Grátis por 30 dias.</h2>
                         <p style={styles.offerDescription}>Imagine um assistente 24/7 que responde dúvidas, qualifica contatos e agenda reuniões automaticamente, tudo dentro do seu WhatsApp. Dê o primeiro passo para o futuro do seu atendimento e veja na prática como liberar seu tempo.</p>
-                        <a href="#offer" style={{ ...styles.ctaButton, ...styles.offerCtaButton }}>QUERO MEU TESTE GRÁTIS AGORA</a>
+                        <button style={{ ...styles.ctaButton, ...styles.offerCtaButton }} onClick={openTypeform}>QUERO MEU TESTE GRÁTIS AGORA</button>
                         <p style={styles.urgencyText}>Após 30 dias, você pode escolher um de nossos planos flexíveis ou simplesmente cancelar, sem compromisso.</p>
                         <div style={styles.securityBadge}><LockIcon /> Seus dados estão 100% seguros conosco.</div>
                     </div>
@@ -245,6 +250,9 @@ export default function App() {
                 </div>
                 <div style={styles.footerBottom}><p>© 2024 aivend.me. Todos os direitos reservados.</p></div>
             </footer>
+
+            {/* --- 3. Botão invisível do Typeform --- */}
+            <PopupButton id="aS9KtJMO" embedRef={typeformRef} style={{ display: 'none' }} />
         </div>
     );
 }
@@ -258,14 +266,14 @@ const styles = {
     logo: { fontSize: '1.8rem', fontWeight: 700, margin: 0, cursor: 'pointer' },
     nav: { display: 'flex', alignItems: 'center', gap: '20px' },
     navLink: { background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px', fontSize: '1rem', color: '#333', fontWeight: 500 },
-    navButton: { textDecoration: 'none', backgroundColor: '#191919', color: '#FFFFFF', padding: '10px 20px', fontSize: '1rem', fontWeight: 600, borderRadius: '8px' },
+    navButton: { textDecoration: 'none', backgroundColor: '#191919', color: '#FFFFFF', padding: '10px 20px', fontSize: '1rem', fontWeight: 600, borderRadius: '8px', cursor: 'pointer', border: 'none', fontFamily: 'inherit' },
     navButtonPastel: { backgroundColor: '#A3E6B6', color: '#191919' },
     menuIcon: { background: 'none', border: 'none', cursor: 'pointer' },
     sideMenu: { position: 'fixed', top: 0, right: 0, width: '280px', height: '100%', backgroundColor: '#FFFFFF', zIndex: 1001, boxShadow: '-10px 0 30px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', padding: '20px' },
     closeButton: { background: 'none', border: 'none', cursor: 'pointer', alignSelf: 'flex-end', padding: '10px' },
     sideNav: { display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '20px' },
     sideNavLink: { background: 'none', border: 'none', cursor: 'pointer', padding: '15px', fontSize: '1.1rem', color: '#333', fontWeight: 500, textAlign: 'left', borderRadius: '8px' },
-    sideNavButton: { backgroundColor: '#A3E6B6', color: '#191919', border: 'none', cursor: 'pointer', padding: '15px', fontSize: '1.1rem', fontWeight: 600, borderRadius: '8px', marginTop: '15px' },
+    sideNavButton: { backgroundColor: '#A3E6B6', color: '#191919', border: 'none', cursor: 'pointer', padding: '15px', fontSize: '1.1rem', fontWeight: 600, borderRadius: '8px', marginTop: '15px', fontFamily: 'inherit' },
     overlay: { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.4)', zIndex: 1000 },
     heroSection: { paddingTop: '100px', paddingBottom: '120px', textAlign: 'center', backgroundColor: '#F7F7F7' },
     heroTitle: { fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.25, marginBottom: '20px', maxWidth: '800px', margin: '0 auto 20px auto' },
@@ -291,7 +299,7 @@ const styles = {
     highlightRed: { backgroundColor: 'rgba(254, 205, 211, 0.6)' },
     highlightBlue: { backgroundColor: 'rgba(174, 198, 207, 0.6)' },
     highlightGray: { backgroundColor: 'rgba(209, 213, 219, 0.6)' },
-    ctaButton: { backgroundColor: '#191919', color: '#FFFFFF', padding: '18px 40px', fontSize: '1rem', fontWeight: 700, textDecoration: 'none', borderRadius: '8px', display: 'inline-block' },
+    ctaButton: { backgroundColor: '#191919', color: '#FFFFFF', padding: '18px 40px', fontSize: '1rem', fontWeight: 700, textDecoration: 'none', borderRadius: '8px', display: 'inline-block', cursor: 'pointer', border: 'none', fontFamily: 'inherit' },
     howItWorksSection: { padding: '100px 0', backgroundColor: '#FFFFFF' },
     howItWorksGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px', textAlign: 'center' },
     howItWorksStep: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
